@@ -3,14 +3,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <TextView
+    <EditText android:id="@+id/add_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="You Are In Tab 1"
-        android:id="@+id/textView"
-        android:layout_centerVertical="true"
+        android:hint="@string/add_amount"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="117dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <Spinner
+        android:id="@+id/choose_category"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:layout_below="@+id/add_amount"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText android:id="@+id/expense_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/expense_description"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/choose_category"
+        android:layout_alignRight="@+id/button_add"
+        android:layout_alignEnd="@+id/button_add" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_submit"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="50dp"
+        android:id="@+id/button_add"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/add_amount"
+        android:layout_alignStart="@+id/add_amount" />
+
 
 </RelativeLayout>

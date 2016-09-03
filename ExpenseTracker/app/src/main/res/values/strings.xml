@@ -3,15 +3,6 @@
     <string name="add_amount">Add amount</string>
     <string name="expense_description">Expense description</string>
     <string name="button_submit">Save expense</string>
-
-    <string-array name="categories">
-        <item>Food</item>
-        <item>Grocery</item>
-        <item>Clothes</item>
-        <item>Travel</item>
-        <item>Books</item>
-        <item>Bills</item>
-        <item>Health</item>
-        <item>Entertainment</item>
-    </string-array>
+    <string name="success">Successfully added an expense</string>
+    <string name="error">Error while adding an expense</string>
 </resources>

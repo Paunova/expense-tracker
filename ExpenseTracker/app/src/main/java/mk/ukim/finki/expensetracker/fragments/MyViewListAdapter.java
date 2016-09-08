@@ -10,17 +10,59 @@ import android.widget.TextView;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import mk.ukim.finki.expensetracker.R;
+import mk.ukim.finki.expensetracker.models.Category;
 import mk.ukim.finki.expensetracker.models.Expense;
 
 public class MyViewListAdapter extends ArrayAdapter<Expense> {
 
     DateTimeFormatter dtfOut = DateTimeFormat.forPattern("dd/MM/yyyy");
 
+    private List<Expense> allExpenses;
+    private List<Expense> filteredExpenses;
+
     public MyViewListAdapter(Context context, int resource, List<Expense> expenses) {
         super(context, resource, expenses);
+        allExpenses = expenses;
+        filteredExpenses = allExpenses;
+    }
+
+    public void filterExpenses(String text, Long categoryId) {
+        if (categoryId.equals(Category.ALL_CATEGORIES_ID)) {
+            filteredExpenses = allExpenses;
+        }
+        else {
+            filteredExpenses = new ArrayList<>();
+            for (Expense e : allExpenses) {
+                if (e.categoryId == categoryId) {
+                    filteredExpenses.add(e);
+                }
+            }
+        }
+
+        List<Expense> filteredByText = new ArrayList<>();
+        for (Expense e : filteredExpenses) {
+            if (e.description.toLowerCase().contains(text.toLowerCase())) {
+                filteredByText.add(e);
+            }
+        }
+        filteredExpenses = filteredByText;
+        refresh();
+    }
+
+    public void modifyExpensesList(List<Expense> newExpenses) {
+        allExpenses = newExpenses;
+        filteredExpenses = allExpenses;
+        refresh();
+    }
+
+    private void refresh() {
+        super.clear();
+        super.addAll(filteredExpenses);
+        super.notifyDataSetChanged();
     }
 
     @Override

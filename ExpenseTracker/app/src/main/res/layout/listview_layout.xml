@@ -9,10 +9,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dip"
-        android:layout_toLeftOf="@+id/date"
+        android:layout_toLeftOf="@id/date"
         android:maxLines="1"
-        android:textColor="@android:color/black"
-        android:textSize="15sp"
+        android:textSize="21sp"
         android:textStyle="bold" />
 
     <TextView
@@ -21,8 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/amount"
         android:ellipsize="end"
-        android:textColor="@android:color/black"
-        android:textSize="13sp" />
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/description"
@@ -30,8 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/category"
         android:ellipsize="end"
-        android:textColor="@android:color/black"
-        android:textSize="13sp" />
+        android:textColor="@android:color/darker_gray"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/date"
@@ -39,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="5dip"
-        android:textColor="@android:color/black"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/darker_gray"
         android:textSize="12sp" />
 </RelativeLayout>

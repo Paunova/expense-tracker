@@ -1,13 +1,9 @@
 package mk.ukim.finki.expensetracker.fragments;
 
 import android.app.DialogFragment;
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +62,8 @@ public class AddFragment extends Fragment {
                 expense.description = description.getText().toString();
                 expense.amount = Integer.parseInt(amount.getText().toString());
                 expense.dateTime = DateTime.now();
-                expense.categoryId = spinner.getSelectedItemId();
+                Category c = (Category) spinner.getSelectedItem();
+                expense.categoryId = c.id;
                 String message;
                 if (expenseRepository.insert(expense)) {
                     message = getResources().getString(R.string.success);

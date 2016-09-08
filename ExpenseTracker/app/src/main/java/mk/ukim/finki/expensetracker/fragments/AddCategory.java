@@ -3,7 +3,6 @@ package mk.ukim.finki.expensetracker.fragments;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import android.widget.EditText;
 
 import mk.ukim.finki.expensetracker.R;
 import mk.ukim.finki.expensetracker.db.repository.CategoryRepository;
-import mk.ukim.finki.expensetracker.db.repository.ExpenseRepository;
 import mk.ukim.finki.expensetracker.db.repository.Repository;
 import mk.ukim.finki.expensetracker.models.Category;
 
@@ -31,12 +29,6 @@ public class AddCategory extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         categoryRepository = CategoryRepository.getInstance(getActivity());
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        CategoryRepository.closeDb();
     }
 
     @Override
@@ -63,6 +55,7 @@ public class AddCategory extends DialogFragment {
                     Category newCategory = new Category();
                     newCategory.name = name;
                     categoryRepository.insert(newCategory);
+
                     getDialog().dismiss();
                 }
             }

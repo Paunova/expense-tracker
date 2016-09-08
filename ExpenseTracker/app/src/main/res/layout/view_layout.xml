@@ -3,15 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <EditText android:id="@+id/input_search"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_string"
+        android:inputType="textVisiblePassword"
+        android:background="@drawable/back"/>
+
+    <LinearLayout
+        android:id="@+id/filter_layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/input_search">
+
+        <TextView
+            android:id="@+id/filter_name"
+            android:text="@string/filter_string"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/sort_by"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_below="@id/filter_layout">
     </ListView>
-
-    <TextView
-        android:id="@android:id/empty"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </TextView>
 </RelativeLayout>

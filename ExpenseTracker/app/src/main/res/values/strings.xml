@@ -5,4 +5,7 @@
     <string name="button_submit">Save expense</string>
     <string name="success">Successfully added an expense</string>
     <string name="error">Error while adding an expense</string>
+    <string name="filter_string">Filter by: </string>
+    <string name="hint_string">Search expenses..</string>
+    <string name="all_categories">All categories</string>
 </resources>

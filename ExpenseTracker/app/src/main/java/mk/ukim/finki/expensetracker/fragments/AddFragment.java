@@ -29,17 +29,8 @@ public class AddFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        categoryRepository = new CategoryRepository(getContext());
-        expenseRepository = new ExpenseRepository(getContext());
-        categoryRepository.open();
-        expenseRepository.open();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        categoryRepository.close();
-        expenseRepository.close();
+        categoryRepository = CategoryRepository.getInstance(getContext());
+        expenseRepository = ExpenseRepository.getInstance(getContext());
     }
 
     @Override
@@ -68,7 +59,7 @@ public class AddFragment extends Fragment {
 
                 Expense expense = new Expense();
                 expense.description = description.getText().toString();
-                expense.amount = Double.parseDouble(amount.getText().toString());
+                expense.amount = Integer.parseInt(amount.getText().toString());
                 expense.dateTime = DateTime.now();
                 expense.categoryId = spinner.getSelectedItemId();
                 String message;

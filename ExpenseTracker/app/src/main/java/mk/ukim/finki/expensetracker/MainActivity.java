@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import mk.ukim.finki.expensetracker.db.repository.BaseRepository;
 import mk.ukim.finki.expensetracker.fragments.ViewPagerAdapter;
 import mk.ukim.finki.expensetracker.utilities.SlidingTabLayout;
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
         adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
 
+
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
@@ -49,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        BaseRepository.closeDb();
     }
 
     @Override

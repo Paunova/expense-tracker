@@ -41,5 +41,14 @@
         android:layout_alignLeft="@+id/add_amount"
         android:layout_alignStart="@+id/add_amount" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:id="@+id/addCtg"
+        android:layout_above="@+id/button_add"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

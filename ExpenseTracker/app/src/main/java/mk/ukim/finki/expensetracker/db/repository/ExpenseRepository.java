@@ -6,6 +6,11 @@ import android.database.Cursor;
 
 import org.joda.time.DateTime;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import mk.ukim.finki.expensetracker.models.Category;
 import mk.ukim.finki.expensetracker.models.Expense;
 import mk.ukim.finki.expensetracker.utilities.Constants;
 
@@ -13,6 +18,18 @@ import mk.ukim.finki.expensetracker.utilities.Constants;
  * Repository class for {@link mk.ukim.finki.expensetracker.models.Expense}.
  */
 public class ExpenseRepository extends BaseRepository<Expense> {
+
+    private static ExpenseRepository expenseRepository;
+
+    private static CategoryRepository categoryRepository;
+
+    public static ExpenseRepository getInstance(Context context) {
+        if (expenseRepository == null) {
+            expenseRepository = new ExpenseRepository(context);
+            expenseRepository.open();
+        }
+        return expenseRepository;
+    }
 
     private String[] allColumns = {
             Constants.Table.Expenses.KEY_ID,
@@ -22,8 +39,20 @@ public class ExpenseRepository extends BaseRepository<Expense> {
             Constants.Table.Expenses.DATE,
     };
 
-    public ExpenseRepository(Context context) {
+    private static Map<Long, Category> categoriesMap;
+
+    private ExpenseRepository(Context context) {
         super(context);
+        categoryRepository = CategoryRepository.getInstance(context);
+        refreshCategories();
+    }
+
+    public static void refreshCategories() {
+        categoriesMap = new HashMap<>();
+        List<Category> categories = categoryRepository.getAll();
+        for (Category c : categories) {
+            categoriesMap.put(c.id, c);
+        }
     }
 
     @Override
@@ -53,11 +82,13 @@ public class ExpenseRepository extends BaseRepository<Expense> {
                 cursor.getColumnIndex(Constants.Table.Expenses.CATEGORY_ID)
         );
 
+        expense.category = categoriesMap.get(expense.categoryId);
+
         expense.description = cursor.getString(
                 cursor.getColumnIndex(Constants.Table.Expenses.DESCRIPTION)
         );
 
-        expense.amount = cursor.getDouble(
+        expense.amount = cursor.getInt(
                 cursor.getColumnIndex(Constants.Table.Expenses.AMOUNT)
         );
 

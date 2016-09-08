@@ -16,7 +16,7 @@ abstract public class BaseRepository<T extends BaseEntity> implements Repository
 
     // Database fields
     private SQLiteDatabase database;
-    private DatabaseHelper dbHelper;
+    private static DatabaseHelper dbHelper;
 
     public BaseRepository(Context context) {
         dbHelper = new DatabaseHelper(context);
@@ -31,8 +31,7 @@ abstract public class BaseRepository<T extends BaseEntity> implements Repository
         database = dbHelper.getWritableDatabase();
     }
 
-    @Override
-    public void close() {
+    public static void closeDb() {
         dbHelper.closeDB();
     }
 

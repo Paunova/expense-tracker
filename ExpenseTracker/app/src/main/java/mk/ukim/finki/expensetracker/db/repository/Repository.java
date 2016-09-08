@@ -20,7 +20,6 @@ public interface Repository<T extends BaseEntity> {
     void deleteEntry(T t);
 
     void open();
-    void close();
 
     T cursorToValue(Cursor c);
     ContentValues valueToContentValues(T t);

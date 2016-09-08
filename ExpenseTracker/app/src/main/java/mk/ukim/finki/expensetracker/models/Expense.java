@@ -8,8 +8,9 @@ import org.joda.time.DateTime;
 public class Expense extends BaseEntity{
 
     public long categoryId;
+    public Category category;
     public DateTime dateTime;
-    public double amount;
+    public int amount;
     public String description;
 
     @Override

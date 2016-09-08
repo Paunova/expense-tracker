@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_EXPENSES = String.format("CREATE TABLE %s " +
             "(%s INTEGER PRIMARY KEY AUTOINCREMENT," +
             " %s INTEGER," +
-            " %s DECIMAL(20)," +
+            " %s INTEGER," +
             " %s VARCHAR(255)," +
             " %s VARCHAR(255)," +
             " FOREIGN KEY (%s) REFERENCES %s(%s));",

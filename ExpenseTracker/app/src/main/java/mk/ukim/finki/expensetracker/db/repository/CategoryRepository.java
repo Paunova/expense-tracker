@@ -12,13 +12,30 @@ import mk.ukim.finki.expensetracker.utilities.Constants;
  */
 public class CategoryRepository extends BaseRepository<Category> {
 
+    private static CategoryRepository categoryRepository;
+
+    public static CategoryRepository getInstance(Context context) {
+        if (categoryRepository == null) {
+            categoryRepository = new CategoryRepository(context);
+            categoryRepository.open();
+        }
+        return categoryRepository;
+    }
+
     private String[] allColumns = {
             Constants.Table.Categories.KEY_ID,
             Constants.Table.Categories.NAME
     };
 
-    public CategoryRepository(Context context) {
+    private CategoryRepository(Context context) {
         super(context);
+    }
+
+    @Override
+    public boolean insert(Category category) {
+        boolean result = super.insert(category);
+        ExpenseRepository.refreshCategories();
+        return result;
     }
 
     @Override

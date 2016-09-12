@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dip"
-        android:layout_toLeftOf="@id/date"
+        android:layout_toLeftOf="@+id/date"
         android:maxLines="1"
         android:textSize="21sp"
         android:textStyle="bold" />

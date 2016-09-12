@@ -1,9 +1,11 @@
 package mk.ukim.finki.expensetracker.fragments;
 
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +45,7 @@ public class AddFragment extends Fragment {
         final EditText description = (EditText) fragmentView.findViewById(R.id.expense_description);
         final Spinner spinner = (Spinner)fragmentView.findViewById(R.id.choose_category);
 
-        ArrayAdapter<Category> categoriesAdapter =
+        final ArrayAdapter<Category> categoriesAdapter =
                 new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item);
 
         categoriesAdapter.addAll(categoryRepository.getAll());
@@ -78,7 +80,14 @@ public class AddFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 DialogFragment newFragment = AddCategory.newInstance();
-                newFragment.show(getActivity().getFragmentManager(), "dialog");
+                AddCategory newCategory = new AddCategory();
+                newCategory.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        categoriesAdapter.notifyDataSetChanged();
+                    }
+                });
+                newCategory.show(getActivity().getFragmentManager(), "dialog");
             }
         });
 

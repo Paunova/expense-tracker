@@ -1,6 +1,7 @@
 package mk.ukim.finki.expensetracker.fragments;
 
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -21,8 +22,22 @@ public class AddCategory extends DialogFragment {
     EditText ctg_name;
     Repository<Category> categoryRepository;
 
+    private DialogInterface.OnDismissListener onDismissListener;
+
     static AddCategory newInstance() {
         return new AddCategory();
+    }
+
+    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
+        this.onDismissListener = onDismissListener;
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if (onDismissListener != null) {
+            onDismissListener.onDismiss(dialog);
+        }
     }
 
     @Override

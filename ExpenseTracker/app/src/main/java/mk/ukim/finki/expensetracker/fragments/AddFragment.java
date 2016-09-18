@@ -1,5 +1,6 @@
 package mk.ukim.finki.expensetracker.fragments;
 
+import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -11,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import org.joda.time.DateTime;
 
@@ -27,6 +30,7 @@ public class AddFragment extends Fragment {
 
     Repository<Category> categoryRepository;
     Repository<Expense> expenseRepository;
+    DateTime selectedDate = null;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,7 +44,6 @@ public class AddFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         View fragmentView = inflater.inflate(R.layout.add_layout,container,false);
-
         final EditText amount = (EditText) fragmentView.findViewById(R.id.add_amount);
         final EditText description = (EditText) fragmentView.findViewById(R.id.expense_description);
         final Spinner spinner = (Spinner)fragmentView.findViewById(R.id.choose_category);
@@ -58,6 +61,25 @@ public class AddFragment extends Fragment {
         Button confirm = (Button)fragmentView.findViewById(R.id.button_add);
         Button addCtg = (Button) fragmentView.findViewById(R.id.addCtg);
         Button rmvCrg = (Button) fragmentView.findViewById(R.id.rmvCtg);
+        final TextView dateView = (TextView) fragmentView.findViewById(R.id.date_view);
+        dateView.setText("Set Date");
+
+        dateView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerFragment date = new DatePickerFragment();
+
+                date.setCallBack(new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        dateView.setText(i2 + "." + i1 + "." + i);
+                        DateTime selection = new DateTime(i, i1, i2, 1 ,1);
+                        selectedDate = selection;
+                    }
+                });
+                date.show(getActivity().getFragmentManager(), "datePicker");
+            }
+        });
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +88,12 @@ public class AddFragment extends Fragment {
                 Expense expense = new Expense();
                 expense.description = description.getText().toString();
                 expense.amount = Integer.parseInt(amount.getText().toString());
-                expense.dateTime = DateTime.now();
+                if (selectedDate == null) {
+                    expense.dateTime = DateTime.now();
+                } else {
+                    DateTime selection = selectedDate;
+                    expense.dateTime = selection;
+                }
                 Category c = (Category) spinner.getSelectedItem();
                 expense.categoryId = c.id;
                 String message;
@@ -108,7 +135,7 @@ public class AddFragment extends Fragment {
             }
         });
 
+
         return fragmentView;
     }
-
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
     <EditText android:id="@+id/add_amount"
@@ -8,59 +8,80 @@
         android:layout_height="wrap_content"
         android:hint="@string/add_amount"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="47dp"
+        android:textSize="32dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <EditText android:id="@+id/expense_description"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/expense_description"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/add_amount"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="20dp"
+        android:maxLines="9"
+        android:minLines="1" />
 
     <Spinner
         android:id="@+id/choose_category"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
-        android:layout_below="@+id/add_amount"
+        android:layout_above="@+id/linearLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <EditText android:id="@+id/expense_description"
-        android:layout_width="wrap_content"
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/expense_description"
-        android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/choose_category"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="67dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/button_add"
+        android:id="@+id/linearLayout">
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add"
+            android:id="@+id/addCtg"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Remove"
+            android:id="@+id/rmvCtg"
+     />
+    </LinearLayout>
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_submit"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center_vertical"
         android:id="@+id/button_add"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerVertical="true" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Add"
-        android:id="@+id/addCtg"
-        android:layout_below="@+id/choose_category"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/rmvCtg"
-        android:layout_toStartOf="@+id/rmvCtg" />
-
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remove"
-        android:id="@+id/rmvCtg"
-        android:layout_below="@+id/choose_category"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/date_view"
+        android:layout_above="@+id/choose_category"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/expense_description" />
-
+        android:textSize="24dp"
+        android:textIsSelectable="true"
+        android:textAlignment="viewEnd" />
 
 </RelativeLayout>

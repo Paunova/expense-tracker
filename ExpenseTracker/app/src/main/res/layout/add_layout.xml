@@ -4,13 +4,14 @@
     android:layout_height="match_parent">
 
     <EditText android:id="@+id/add_amount"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/add_amount"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="117dp"
+        android:layout_marginTop="150dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Spinner
         android:id="@+id/choose_category"
@@ -27,28 +28,39 @@
         android:hint="@string/expense_description"
         android:layout_gravity="center_horizontal"
         android:layout_below="@+id/choose_category"
-        android:layout_alignRight="@+id/button_add"
-        android:layout_alignEnd="@+id/button_add" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="67dp" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_submit"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="50dp"
         android:id="@+id/button_add"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/add_amount"
-        android:layout_alignStart="@+id/add_amount" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:id="@+id/addCtg"
+        android:layout_below="@+id/choose_category"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/rmvCtg"
+        android:layout_toStartOf="@+id/rmvCtg" />
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+"
-        android:id="@+id/addCtg"
-        android:layout_above="@+id/button_add"
-        android:layout_centerHorizontal="true" />
+        android:text="Remove"
+        android:id="@+id/rmvCtg"
+        android:layout_below="@+id/choose_category"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/expense_description" />
 
 
 </RelativeLayout>

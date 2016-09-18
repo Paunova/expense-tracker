@@ -70,7 +70,6 @@ public class AddCategory extends DialogFragment {
                     Category newCategory = new Category();
                     newCategory.name = name;
                     categoryRepository.insert(newCategory);
-
                     getDialog().dismiss();
                 }
             }

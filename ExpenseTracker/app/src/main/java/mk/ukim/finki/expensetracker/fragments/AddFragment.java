@@ -46,16 +46,19 @@ public class AddFragment extends Fragment {
         final Spinner spinner = (Spinner)fragmentView.findViewById(R.id.choose_category);
 
         final ArrayAdapter<Category> categoriesAdapter =
-                new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item);
+                new ArrayAdapter<Category>(getContext(), android.R.layout.simple_spinner_item);
 
+        spinner.setAdapter(categoriesAdapter);
         categoriesAdapter.addAll(categoryRepository.getAll());
 
         categoriesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spinner.setAdapter(categoriesAdapter);
+
 
         Button confirm = (Button)fragmentView.findViewById(R.id.button_add);
         Button addCtg = (Button) fragmentView.findViewById(R.id.addCtg);
+        Button rmvCrg = (Button) fragmentView.findViewById(R.id.rmvCtg);
+
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,10 +87,24 @@ public class AddFragment extends Fragment {
                 newCategory.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
+                        categoriesAdapter.clear();
+                        categoriesAdapter.addAll(categoryRepository.getAll());
                         categoriesAdapter.notifyDataSetChanged();
+                        spinner.setSelection(spinner.getCount() - 1);
                     }
                 });
                 newCategory.show(getActivity().getFragmentManager(), "dialog");
+            }
+        });
+
+        rmvCrg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Category selectedCategory = (Category) spinner.getSelectedItem();
+                categoryRepository.deleteEntry(selectedCategory);
+                categoriesAdapter.clear();
+                categoriesAdapter.addAll(categoryRepository.getAll());
+                categoriesAdapter.notifyDataSetChanged();
             }
         });
 

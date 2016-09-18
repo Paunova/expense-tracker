@@ -10,9 +10,14 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
@@ -23,16 +28,17 @@ public class StatsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        View fragmentView = inflater.inflate(R.layout.stats_layout,container,false);
+        ArrayList<Entry> entries = new ArrayList<>();
+        entries.add(new Entry(4f, 0));
+        entries.add(new Entry(8f, 1));
+        entries.add(new Entry(6f, 2));
+        entries.add(new Entry(12f, 3));
+        entries.add(new Entry(18f, 4));
+        entries.add(new Entry(9f, 5));
 
-        ArrayList<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(4f, 0));
-        entries.add(new BarEntry(8f, 1));
-        entries.add(new BarEntry(6f, 2));
-        entries.add(new BarEntry(12f, 3));
-        entries.add(new BarEntry(18f, 4));
-        entries.add(new BarEntry(9f, 5));
-
-        BarDataSet dataset = new BarDataSet(entries, "# of Calls");
+        PieDataSet dataset = new PieDataSet(entries, "# of Calls");
+        dataset.setColors(ColorTemplate.COLORFUL_COLORS);
 
         ArrayList<String> labels = new ArrayList<String>();
         labels.add("January");
@@ -42,12 +48,12 @@ public class StatsFragment extends Fragment {
         labels.add("May");
         labels.add("June");
 
-        BarChart chart = new BarChart(getContext());
-
-        BarData data = new BarData(labels, dataset);
+        PieChart chart = (PieChart) fragmentView.findViewById(R.id.chart);
+        chart.animateY(2000);
+        PieData data = new PieData(labels, dataset);
         chart.setData(data);
         chart.setDescription("# of times Alice called Bob");
-        return inflater.inflate(R.layout.stats_layout,container,false);
+        return fragmentView;
     }
 
 }

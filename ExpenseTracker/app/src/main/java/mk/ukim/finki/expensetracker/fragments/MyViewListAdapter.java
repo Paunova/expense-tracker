@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.joda.time.format.DateTimeFormat;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mk.ukim.finki.expensetracker.R;
+import mk.ukim.finki.expensetracker.db.repository.CategoryRepository;
 import mk.ukim.finki.expensetracker.models.Category;
 import mk.ukim.finki.expensetracker.models.Expense;
 

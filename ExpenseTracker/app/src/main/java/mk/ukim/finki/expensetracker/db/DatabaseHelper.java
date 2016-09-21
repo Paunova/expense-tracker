@@ -43,12 +43,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "VALUES " +
             "(1, 'Grocery'), " +
             "(2, 'Food'), " +
-            "(3, 'Clothes'), " +
-            "(4, 'Travel'), " +
-            "(5, 'Books'), " +
+            "(3, 'Bills'), " +
+            "(4, 'Health'), " +
+            "(5, 'Travel'), " +
             "(6, 'Bills'), " +
-            "(7, 'Health'), " +
-            "(8, 'Entertainment');",
+            "(7, 'Entertainment');",
             Constants.Table.Categories.TABLE_NAME
     );
 

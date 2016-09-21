@@ -56,8 +56,6 @@ public class AddFragment extends Fragment {
 
         categoriesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-
-
         Button confirm = (Button)fragmentView.findViewById(R.id.button_add);
         Button addCtg = (Button) fragmentView.findViewById(R.id.addCtg);
         Button rmvCrg = (Button) fragmentView.findViewById(R.id.rmvCtg);
@@ -134,7 +132,6 @@ public class AddFragment extends Fragment {
                 categoriesAdapter.notifyDataSetChanged();
             }
         });
-
 
         return fragmentView;
     }

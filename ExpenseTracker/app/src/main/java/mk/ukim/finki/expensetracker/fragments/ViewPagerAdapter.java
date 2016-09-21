@@ -35,12 +35,10 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     // This method return the titles for the Tabs in the Tab Strip
-
     @Override
     public CharSequence getPageTitle(int position) {
         return Titles[position];
     }
-
     // This method return the Number of tabs for the tabs Strip
 
     @Override

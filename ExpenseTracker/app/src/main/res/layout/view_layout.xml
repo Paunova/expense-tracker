@@ -4,35 +4,47 @@
     android:layout_height="match_parent">
 
     <EditText android:id="@+id/input_search"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="330dp"
+        android:layout_height="64px"
         android:hint="@string/hint_string"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
         android:inputType="textVisiblePassword"
-        android:background="@drawable/back"/>
+        android:background="@drawable/back"
+        android:layout_marginTop="3dp"/>
 
     <LinearLayout
         android:id="@+id/filter_layout"
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/input_search">
+        android:layout_width="330dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/input_search"
+        android:background="@drawable/back"
+        android:layout_centerHorizontal="true">
 
         <TextView
             android:id="@+id/filter_name"
             android:text="@string/filter_string"
+            android:textAlignment="center"
+            android:gravity="center"
             android:layout_gravity="center"
+            android:layout_marginLeft="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <Spinner
             android:id="@+id/sort_by"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAlignment="center"/>
     </LinearLayout>
 
     <ListView
         android:id="@android:id/list"
-        android:layout_width="match_parent"
+        android:layout_width="330dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:layout_below="@id/filter_layout">
     </ListView>

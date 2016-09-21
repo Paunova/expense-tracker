@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import mk.ukim.finki.expensetracker.db.repository.ExpenseRepository;
 import mk.ukim.finki.expensetracker.db.repository.Repository;
 import mk.ukim.finki.expensetracker.models.Category;
 import mk.ukim.finki.expensetracker.models.Expense;
+import mk.ukim.finki.expensetracker.utilities.StatisticsFacade;
 
 public class ViewFragment extends ListFragment implements AdapterView.OnItemClickListener {
 
@@ -44,7 +46,6 @@ public class ViewFragment extends ListFragment implements AdapterView.OnItemClic
         View v = inflater.inflate(R.layout.view_layout,container,false);
 
         inputSearch = (EditText) v.findViewById(R.id.input_search);
-
 
         final Spinner spinner = (Spinner)v.findViewById(R.id.sort_by);
 

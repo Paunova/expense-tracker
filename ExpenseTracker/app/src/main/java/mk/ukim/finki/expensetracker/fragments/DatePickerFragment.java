@@ -16,12 +16,12 @@ public class DatePickerFragment extends DialogFragment {
     private int day;
 
     public DatePickerFragment() {
+
     }
 
     public void setCallBack(DatePickerDialog.OnDateSetListener ondate) {
         ondateSet = ondate;
     }
-
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
